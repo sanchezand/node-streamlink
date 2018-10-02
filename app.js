@@ -3,6 +3,12 @@ const Streamlink = require('./Stream.js');
 var link = 'twitch.tv/northernlion';
 var stream = new Streamlink(link).quality('best').output('./' + Date.now() + '.flv').start();
 
+stream.getQualities();
+
+stream.on('quality', (data) => {
+    console.log(data);
+});
+
 stream.on('err', (err) => {
     console.log(err);
 });

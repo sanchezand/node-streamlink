@@ -21,8 +21,12 @@ class Streamlink extends EventEmitter {
 
     isLive(done) {
         exec('streamlink -j ' + this.stream, (err, stdout, stderr) => {
-            if (JSON.parse(stdout).error) done(false);
-            else done(true);
+            var json = JSON.parse(stdout);
+            if (json.error);
+            else {
+                this.qualities = Object.keys(json['streams']);
+                done(true);
+            }
         });
     }
 
@@ -74,7 +78,11 @@ class Streamlink extends EventEmitter {
     }
 
     getQualities() {
-        return this;
+        this.isLive(live => {
+            this.emit('quality', this.qualities);
+            return this;
+        });
+        this.emit('err', 'Stream is not live.');
     }
 }
 
