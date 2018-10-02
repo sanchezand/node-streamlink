@@ -51,7 +51,7 @@ class Streamlink extends EventEmitter {
 
             this.live = spawn('streamlink', args);
             this.live.stdout.on('data', (d) => {
-                console.log(d.toString());
+                this.emit('log', d.toString());
             });
 
             this.live.on('close', (code, st) => this.end(code, st));

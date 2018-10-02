@@ -17,3 +17,7 @@ stream.on('end', (o) => {
     console.log("Stream ended");
     console.log(o);
 });
+
+stream.on('log', (data) => {
+    console.log(data);
+});
