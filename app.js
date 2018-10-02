@@ -1,7 +1,7 @@
 const Streamlink = require('./Stream.js');
 
 var link = 'twitch.tv/northernlion';
-var stream = new Streamlink(link).quality('best').output('./' + Date.now() + '.flv').start();
+var stream = new Streamlink(link).output('./' + Date.now() + '.flv').start();
 
 stream.getQualities();
 

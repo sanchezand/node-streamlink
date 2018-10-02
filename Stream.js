@@ -46,7 +46,7 @@ class Streamlink extends EventEmitter {
                 args.push(this.outputLoc);
             }
             args.push(this.stream);
-            args.push(this.qual);
+            args.push(this.qual || 'best');
             this.startTime = Math.floor(Date.now() / 1000);
 
             this.live = spawn('streamlink', args);
